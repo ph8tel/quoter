@@ -11,7 +11,7 @@ export default function Demo() {
   const askAi = async function () {
     let answer = await axios({
       method: 'get',
-      url: 'http://localhost:3001/ai',
+      url: 'https://aiquoter.herokuapp.com/ai',
       params: form.values
     });
     console.log('yo0', answer.data.choices)
