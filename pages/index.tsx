@@ -5,10 +5,11 @@ import { useForm } from '@mantine/form';
 import axios from 'axios'
 export default function Demo() {
   const [active, setActive] = useState(0);
-  const [asked, setAsked] = useState(false);
-  const [prediction, setPrediction] = useState('Gathering Info');
-  const [formState, setFormState] = useState({});
+
+  const [prediction, setPrediction] = useState('Press the button to ask Covertron');
+
   const askAi = async function () {
+    setPrediction('Covertron is thinking...')
     let answer = await axios({
       method: 'get',
       url: 'https://aiquoter.herokuapp.com/ai',
@@ -22,7 +23,7 @@ export default function Demo() {
       lob: 'Auto',
       drivingrecord: '',
       zipcode: '90210',
-      age: '',
+      age: '35',
       sex: '',
       assetValue: '',
       coverageLevel: '',
