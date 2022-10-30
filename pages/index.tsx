@@ -21,7 +21,7 @@ export default function AiQuiz() {
       lob: 'Auto',
       drivingrecord: '',
       zipcode: '90210',
-      age: '',
+      age: '35',
       sex: '',
       assetValue: '',
       coverageLevel: '',
@@ -91,7 +91,7 @@ export default function AiQuiz() {
         <Stepper.Step label="Coverage level" description="How covered do you want to be">
           <Select
             label="How expensive is your car?"
-            placeholder="Be honest"
+            placeholder="No bragging, just facts. You can't impress a machine"
             data={[
               { value: '80,000', label: 'Luxury' },
               { value: '50,000', label: 'Highly' },
@@ -106,7 +106,7 @@ export default function AiQuiz() {
             placeholder="Cheap or the works?"
             data={[
               { value: 'full', label: 'The Works' },
-              { lable: 'average', value: 'Decent' },
+              { value: 'average', label: 'Decent' },
               { value: 'minimal', label: 'The cheapest I can get' },
             ]}
             {...form.getInputProps("coverageLevel")}
