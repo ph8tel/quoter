@@ -23,7 +23,7 @@ export default function AiQuiz() {
       zipcode: '90210',
       age: '35',
       sex: '',
-      assetValue: '',
+      carcost: '',
       coverageLevel: '',
       rating: ''
     },
@@ -99,7 +99,7 @@ export default function AiQuiz() {
               { value: '25,000', label: 'Economy' },
               { value: '15,000', label: 'Compact' }
             ]}
-            {...form.getInputProps('assetValue')}
+            {...form.getInputProps('carcost')}
           />
           <Select
             label="How much coverage?"
