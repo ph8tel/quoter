@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useState } from 'react';
-import { Stepper, Button, Group, TextInput, Code } from '@mantine/core';
+import { Select, NumberInput, Stepper, Button, Group, TextInput, Code } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import axios from 'axios'
 export default function Demo() {
@@ -19,7 +19,8 @@ export default function Demo() {
     }
   const form = useForm({
     initialValues: {
-      lob: 'Home or Auto',
+      lob: 'Auto',
+      drivingrecord: '',
       zipcode: '90210',
       age: '',
       sex: '',
@@ -42,20 +43,77 @@ export default function Demo() {
 
   return (
     <>
-      <Stepper active={active} breakpoint="sm">
-        <Stepper.Step label="What and Where" description="What you want to insure and where">
-          <TextInput label="Type of Insurance" placeholder="Home or Auto" {...form.getInputProps('lob')} />
+        <Stepper active={active} breakpoint="sm">
+          <Stepper.Step label="What and Where" description="What you want to insure and where">
+          <Select
+            label="How is your driving record?"
+            placeholder="Pick one"
+            data={[
+              { value: 'great', label: 'Great' },
+              { value: 'good', label: 'Good' },
+              { value: 'ok', label: 'OK' },
+              { value: 'bad', label: 'Mistakes have been made' },
+            ]}
+            {...form.getInputProps('drivingrecord')}
+          />
           <TextInput label="Your zipcode" placeholder="Where you are" {...form.getInputProps('zipcode')} />
         </Stepper.Step>
 
         <Stepper.Step label="About you" description="Tell us about you">
-          <TextInput label="Age" placeholder="0-111" {...form.getInputProps('age')} />
-          <TextInput label="Sex" placeholder="Male or Female" {...form.getInputProps('sex')} />
-          <TextInput mt="md" label="rating" placeholder="Be real, what is your credit score?" {...form.getInputProps('rating')} />
+        <NumberInput
+          defaultValue={18}
+          placeholder="Your age"
+          label="How old are you?"
+          withAsterisk
+          {...form.getInputProps('age')}
+        />
+        <Select
+          label="Male or Female"
+          placeholder="Male or Female?"
+          data={[
+            { value: 'male', label: 'Male' },
+            { value: 'female', label: 'Female' },
+          ]}
+          {...form.getInputProps('sex')}
+        />
+          <Select
+            label="What is your credit score?"
+            placeholder="Be honest"
+            data={[
+              { value: 'excellent', label: '800+' },
+              { value: 'great', label: '750+' },
+              { value: 'ok', label: '700+'},
+              { value: 'bad', label: '650+'},
+              { value: 'horrid', label: 'Working on it, show me the high rates'}
+            ]}
+            {...form.getInputProps('rating')}
+          />
         </Stepper.Step>
-
         <Stepper.Step label="Coverage level" description="How covered do you want to be">
-          <TextInput mt="md" label="assetValue" placeholder="How expensive is your asset?" {...form.getInputProps('assetValue')} />
+        <Select
+            label="How expensive is your car?"
+            placeholder="Be honest"
+            data={[
+              { value: '80,000', label: 'Luxury' },
+              { lable: 'High', value: '50,000' },
+              { value: '35,000', label: 'Sverage'},
+              { value: '25,000', label: 'Economy'},
+              { value: '15,000', label: 'Compact'}
+            ]}
+            {...form.getInputProps('assetValue')}
+          />
+        <Select
+            label="How much coverage?"
+            placeholder="Cheap or the works?"
+            data={[
+              { value: 'full', label: 'The Works' },
+              { lable: 'decent', value: 'Decent' },
+              { value: 'minimal', label: 'The cheapest I can get'},
+              { value: '25,000', label: 'economy'},
+              { value: '15,000', label: 'compact'}
+            ]}
+            {...form.getInputProps('assetValue')}
+          />
           <TextInput mt="md" label="coverageLevel" placeholder="How much coverage do you want?" {...form.getInputProps('coverageLevel')} />
         </Stepper.Step>
         <Stepper.Completed>
