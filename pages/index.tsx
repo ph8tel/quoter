@@ -95,8 +95,8 @@ export default function Demo() {
             placeholder="Be honest"
             data={[
               { value: '80,000', label: 'Luxury' },
-              { lable: 'High', value: '50,000' },
-              { value: '35,000', label: 'Sverage'},
+              { value: '50,000', label: 'Highly' },
+              { value: '35,000', label: 'Average'},
               { value: '25,000', label: 'Economy'},
               { value: '15,000', label: 'Compact'}
             ]}
@@ -112,9 +112,8 @@ export default function Demo() {
               { value: '25,000', label: 'economy'},
               { value: '15,000', label: 'compact'}
             ]}
-            {...form.getInputProps('assetValue')}
+            {...form.getInputProps("coverageLevel")}
           />
-          <TextInput mt="md" label="coverageLevel" placeholder="How much coverage do you want?" {...form.getInputProps('coverageLevel')} />
         </Stepper.Step>
         <Stepper.Completed>
           <Button onClick={askAi}>ask Covertron</Button>
