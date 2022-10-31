@@ -1,12 +1,21 @@
 import { useState } from 'react';
-import { Select, NumberInput, Stepper, Button, Group, TextInput, Code } from '@mantine/core';
+import { Select, NumberInput, Stepper, Button, Group, TextInput, Code, Textarea } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import axios from 'axios'
 export default function AiQuiz() {
   const [active, setActive] = useState(0);
 
   const [prediction, setPrediction] = useState('Press the button to ask Covertron');
-
+  const chatAi = async function () {
+    setPrediction('Covertron is thinking of a reply...')
+    let answer = await axios({
+      method: 'get',
+      url: 'https://aiquoter.herokuapp.com/ai/chat',
+      params: { questiontext: form.values.chat }
+    });
+    form.values.chat= '';
+    setPrediction(answer.data.answer)
+  }
   const askAi = async function () {
     setPrediction('Covertron is thinking...')
     let answer = await axios({
@@ -25,7 +34,8 @@ export default function AiQuiz() {
       sex: '',
       carcost: '',
       coverageLevel: '',
-      rating: ''
+      rating: '',
+      chat: ''
     },
   });
 
@@ -115,7 +125,14 @@ export default function AiQuiz() {
 
         <Stepper.Completed>
           <Button onClick={askAi}>ask Covertron</Button>
-          {prediction}
+          <Code block mt="xl">
+            {prediction}
+          </Code>
+          <Textarea
+            label={'Ask Covertron a Question'}
+            {...form.getInputProps('chat')}
+          />
+          <Button onClick={chatAi}>Chat</Button>
           <Code block mt="xl">
             {JSON.stringify(form.values, null, 2)}
           </Code>
